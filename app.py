@@ -1,6 +1,7 @@
 from flask import Flask, render_template_string, request, jsonify
 import pandas as pd
-import pickle
+import numpy as np
+import joblib
 import os
 
 app = Flask(__name__)
@@ -26,8 +27,7 @@ COLUMNS = [
 # Load the trained model
 def load_model():
     try:
-        with open('usedcarpriceprediction3.pkl', 'rb') as file:
-            model = pickle.load(file)
+        model = joblib.load('usedcarpriceprediction3.pkl')
         print("Model loaded successfully!")
         return model
     except Exception as e:
