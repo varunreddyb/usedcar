@@ -1,27 +1,27 @@
-from flask import Flask, render_template, request, jsonify, render_template_string
+from flask import Flask, render_template_string, request, jsonify
 import pandas as pd
-import numpy as np
 import pickle
-from sklearn.preprocessing import StandardScaler
 import os
 
 app = Flask(__name__)
 
 # Define the columns based on your dataset structure
-COLUMNS = ['Kilometers_Driven', 'Mileage', 'Engine', 'Power', 'Seats', 'Car_Age',
-          'Location_Ahmedabad', 'Location_Bangalore', 'Location_Chennai', 'Location_Coimbatore',
-          'Location_Delhi', 'Location_Hyderabad', 'Location_Jaipur', 'Location_Kochi',
-          'Location_Kolkata', 'Location_Mumbai', 'Location_Pune',
-          'Fuel_Type_CNG', 'Fuel_Type_Diesel', 'Fuel_Type_Electric', 'Fuel_Type_LPG', 'Fuel_Type_Petrol',
-          'Transmission_Automatic', 'Transmission_Manual',
-          'Owner_Type_First', 'Owner_Type_Fourth & Above', 'Owner_Type_Second', 'Owner_Type_Third',
-          'Brand_Ambassador', 'Brand_Audi', 'Brand_BMW', 'Brand_Bentley', 'Brand_Chevrolet',
-          'Brand_Datsun', 'Brand_Fiat', 'Brand_Force', 'Brand_Ford', 'Brand_Honda',
-          'Brand_Hyundai', 'Brand_ISUZU', 'Brand_Isuzu', 'Brand_Jaguar', 'Brand_Jeep',
-          'Brand_Lamborghini', 'Brand_Land', 'Brand_Mahindra', 'Brand_Maruti',
-          'Brand_Mercedes-Benz', 'Brand_Mini', 'Brand_Mitsubishi', 'Brand_Nissan',
-          'Brand_Porsche', 'Brand_Renault', 'Brand_Skoda', 'Brand_Smart', 'Brand_Tata',
-          'Brand_Toyota', 'Brand_Volkswagen', 'Brand_Volvo']
+COLUMNS = [
+    'Kilometers_Driven', 'Mileage', 'Engine', 'Power', 'Seats', 'Car_Age',
+    'Location_Ahmedabad', 'Location_Bangalore', 'Location_Chennai', 'Location_Coimbatore',
+    'Location_Delhi', 'Location_Hyderabad', 'Location_Jaipur', 'Location_Kochi',
+    'Location_Kolkata', 'Location_Mumbai', 'Location_Pune',
+    'Fuel_Type_CNG', 'Fuel_Type_Diesel', 'Fuel_Type_Electric', 'Fuel_Type_LPG', 'Fuel_Type_Petrol',
+    'Transmission_Automatic', 'Transmission_Manual',
+    'Owner_Type_First', 'Owner_Type_Fourth & Above', 'Owner_Type_Second', 'Owner_Type_Third',
+    'Brand_Ambassador', 'Brand_Audi', 'Brand_BMW', 'Brand_Bentley', 'Brand_Chevrolet',
+    'Brand_Datsun', 'Brand_Fiat', 'Brand_Force', 'Brand_Ford', 'Brand_Honda',
+    'Brand_Hyundai', 'Brand_ISUZU', 'Brand_Isuzu', 'Brand_Jaguar', 'Brand_Jeep',
+    'Brand_Lamborghini', 'Brand_Land', 'Brand_Mahindra', 'Brand_Maruti',
+    'Brand_Mercedes-Benz', 'Brand_Mini', 'Brand_Mitsubishi', 'Brand_Nissan',
+    'Brand_Porsche', 'Brand_Renault', 'Brand_Skoda', 'Brand_Smart', 'Brand_Tata',
+    'Brand_Toyota', 'Brand_Volkswagen', 'Brand_Volvo'
+]
 
 # Load the trained model
 def load_model():
@@ -681,4 +681,4 @@ def api_predict():
         }), 400
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=os.getenv('PORT', 5000))
