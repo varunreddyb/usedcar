@@ -464,8 +464,8 @@ def renderPredictPage():
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        # Generate a random prediction between 1 and 100 lakhs
-        prediction = np.random.uniform(1, 100)
+        # Generate a random prediction between 4 and 10 lakhs
+        prediction = np.random.uniform(4, 10)
         
         return render_template_string('''
             <!DOCTYPE html>
@@ -590,8 +590,8 @@ def predict():
 @app.route('/api/predict', methods=['POST'])
 def api_predict():
     try:
-        # Generate a random prediction between 1 and 100 lakhs
-        prediction = np.random.uniform(1, 100)
+        # Generate a random prediction between 4 and 10 lakhs
+        prediction = np.random.uniform(4, 10)
         
         return jsonify({
             'predicted_price': float(prediction),
